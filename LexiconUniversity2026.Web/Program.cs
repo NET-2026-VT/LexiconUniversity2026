@@ -1,7 +1,14 @@
+using LexiconUniversity2026.Persistence.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<LexiconUniversityContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("LexiconUniversityContext")
+?? throw new InvalidOperationException("Connections tring 'LexiconUniversityContext' not found!"))); 
 
 var app = builder.Build();
 
