@@ -49,7 +49,7 @@ namespace LexiconUniversity2026.Persistence.Migrations
                     b.HasIndex("StudentId")
                         .IsUnique();
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
                 });
 
             modelBuilder.Entity("LexiconUniversity2026.Core.Entities.Student", b =>
@@ -78,7 +78,7 @@ namespace LexiconUniversity2026.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("LexiconUniversity2026.Core.Entities.Address", b =>
