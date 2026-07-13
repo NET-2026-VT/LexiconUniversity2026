@@ -15,6 +15,8 @@ namespace LexiconUniversity2026.Core.Entities
 
         public string Email { get; set; } = string.Empty;
 
-        public Address Address { get; set; } = new Address(); 
+        public Address Address { get; set; } = new Address();
+
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
