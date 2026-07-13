@@ -1,5 +1,7 @@
+using LexiconUniversity2026.Persistence;
 using LexiconUniversity2026.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,25 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("LexiconUniversit
 ?? throw new InvalidOperationException("Connection string 'LexiconUniversityContext' not found!"))); 
 
 var app = builder.Build();
+
+using(var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    var context = serviceProvider.GetRequiredService<LexiconUniversityContext>();
+
+    //await context.Database.EnsureDeletedAsync();
+    await context.Database.MigrateAsync();
+
+    try
+    {
+        await SeedData.InitAsync(context); 
+    }
+    catch (Exception ex)
+    {
+
+        throw;
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

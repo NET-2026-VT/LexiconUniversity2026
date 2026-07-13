@@ -16,6 +16,6 @@ namespace LexiconUniversity2026.Core.Entities
         public int StudentId { get; set; }
 
         //Navigational Property
-        public Student Student { get; set; } = new Student(); 
+        public Student Student { get; set; }
     }
 }
