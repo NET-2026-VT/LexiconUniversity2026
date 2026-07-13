@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="LexiconUniversity2026.Core/LexiconUniversity2026.Core.csproj" />
+  <Project Path="LexiconUniversity2026.Persistence/LexiconUniversity2026.Persistence.csproj" />
+  <Project Path="LexiconUniversity2026.Web/LexiconUniversity2026.Web.csproj" />
+</Solution>
