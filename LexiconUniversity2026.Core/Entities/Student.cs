@@ -14,5 +14,7 @@ namespace LexiconUniversity2026.Core.Entities
         public string FullName => $"{FirstName} {LastName}"; 
 
         public string Email { get; set; }
+
+        public Address Address { get; set; }
     }
 }
