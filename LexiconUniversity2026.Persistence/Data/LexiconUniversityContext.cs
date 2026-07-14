@@ -27,6 +27,8 @@ namespace LexiconUniversity2026.Persistence.Data
 
             modelBuilder.ApplyConfiguration(new StudentConfigurations());
 
+            modelBuilder.Entity<Course>().ToTable("Courses", c => c.IsTemporal()); 
+
             //foreach (var entity in modelBuilder.Model.GetEntityTypes())
             //{
             //    entity.AddProperty("Edited", typeof(DateTime));

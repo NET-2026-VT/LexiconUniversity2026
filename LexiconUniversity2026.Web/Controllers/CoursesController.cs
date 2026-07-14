@@ -22,6 +22,11 @@ namespace LexiconUniversity2026.Web.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
+            var courses = _context.Courses
+                .Select(c => new { c.Title, Start = EF.Property<DateTime>(c, "PeriodStart") }).ToList();
+
+            var all = _context.Courses.TemporalAll(); 
+
             return View(await _context.Courses.ToListAsync());
         }
 
