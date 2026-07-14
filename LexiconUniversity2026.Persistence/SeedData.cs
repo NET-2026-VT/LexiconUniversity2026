@@ -82,11 +82,11 @@ namespace LexiconUniversity2026.Persistence
             {
                 string fName = _faker.Name.FirstName();
                 string lName = _faker.Name.LastName();
+                Name name = new Name { FirstName = fName, LastName = lName };
                 Student student = new Student()
                 {
                     Avatar = _faker.Internet.Avatar(),
-                    FirstName = fName,
-                    LastName = lName,
+                    Name = name,
                     Email = _faker.Internet.Email(fName, lName, "lexicon.se"),
                     Address = new Address
                     {
@@ -94,7 +94,7 @@ namespace LexiconUniversity2026.Persistence
                         ZipCode = _faker.Address.ZipCode(),
                         City = _faker.Address.City()
                     }
-                };
+                }; 
                 students.Add(student);
             }
 
