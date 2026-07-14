@@ -22,6 +22,15 @@ namespace LexiconUniversity2026.Web.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
+            var t = _context.Students.ToList();
+
+            var t2 = _context.Students.Include(s => s.Enrollments).ToList();
+
+            var t3 = _context.Students.Include(s => s.Enrollments).ThenInclude(e => e.Course).ToList();
+
+            var full = _context.Students.Include(s => s.Address).Include(s => s.Enrollments).ThenInclude(e => e.Course).ToList(); 
+
+
             return View(await _context.Students.ToListAsync());
         }
 
