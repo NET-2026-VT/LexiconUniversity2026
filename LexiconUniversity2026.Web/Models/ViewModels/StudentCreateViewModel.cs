@@ -1,4 +1,6 @@
-﻿namespace LexiconUniversity2026.Web.Models.ViewModels
+﻿using LexiconUniversity2026.Web.Validations;
+
+namespace LexiconUniversity2026.Web.Models.ViewModels
 {
     public class StudentCreateViewModel
     {
@@ -7,6 +9,7 @@
 
         public string Email { get; set; }
 
+        [CheckStreetNr(10)]
         public string Street { get; set; }
         public string ZipCode { get; set; }
         public string City { get; set; }
