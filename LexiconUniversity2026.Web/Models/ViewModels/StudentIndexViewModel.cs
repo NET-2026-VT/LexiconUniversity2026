@@ -7,5 +7,13 @@
         public string FullName { get; set; }
 
         public string City { get; set; }
+
+        public IEnumerable<CourseInfo> CourseInfos { get; set; }
+    }
+
+    public class CourseInfo
+    {
+        public string CourseName { get; set; }
+        public int Grade { get; set; }
     }
 }

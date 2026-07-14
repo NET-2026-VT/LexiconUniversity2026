@@ -28,7 +28,12 @@ namespace LexiconUniversity2026.Web.Controllers
                     Id = s.Id,
                     Avatar = s.Avatar,
                     FullName = s.Name.FullName,
-                    City = s.Address.City
+                    City = s.Address.City,
+                    CourseInfos = s.Enrollments.Select(e => new CourseInfo
+                    {
+                        CourseName = e.Course.Title,
+                        Grade = e.Grade
+                    })
                 })
                 .Take(5);
            
