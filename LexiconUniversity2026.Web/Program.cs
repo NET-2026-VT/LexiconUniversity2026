@@ -11,7 +11,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<LexiconUniversityContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("LexiconUniversityContext")
-?? throw new InvalidOperationException("Connection string 'LexiconUniversityContext' not found!"))); 
+?? throw new InvalidOperationException("Connection string 'LexiconUniversityContext' not found!")));
+
+builder.Services.AddScoped<IGetCoursesService, GetCoursesService>(); 
 
 var app = builder.Build();
 

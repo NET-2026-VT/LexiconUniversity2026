@@ -72,6 +72,7 @@ namespace LexiconUniversity2026.Web.Controllers
         public async Task<IActionResult> Create(StudentCreateViewModel viewModel)
         {
             _faker = new Faker("sv");
+            Random rnd = new Random(); 
 
             if (ModelState.IsValid)
             {
@@ -82,6 +83,16 @@ namespace LexiconUniversity2026.Web.Controllers
                     Email = viewModel.Email,
                     Address = new Address { Street = viewModel.Street, ZipCode = viewModel.ZipCode, City = viewModel.City }
                 };
+
+                foreach (int courseId in viewModel.SelectedCourses)
+                {
+                    student.Enrollments.Add(new Enrollment
+                    {
+                        CourseId = courseId,
+                        Grade = rnd.Next(1, 5)
+                    });
+                }
+
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
