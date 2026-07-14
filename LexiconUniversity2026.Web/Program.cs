@@ -1,6 +1,7 @@
 using LexiconUniversity2026.Persistence;
 using LexiconUniversity2026.Persistence.Data;
 using LexiconUniversity2026.Web.Extensions;
+using LexiconUniversity2026.Web.Filters;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 
@@ -8,6 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews(
+//    opt=>
+//    {
+//        opt.Filters.Add(typeof(ModelStateIsValid));
+//    });
 
 builder.Services.AddDbContext<LexiconUniversityContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("LexiconUniversityContext")

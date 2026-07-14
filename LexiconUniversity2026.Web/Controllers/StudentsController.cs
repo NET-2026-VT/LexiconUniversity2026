@@ -165,6 +165,7 @@ namespace LexiconUniversity2026.Web.Controllers
         }
 
         // GET: Students/Delete/5
+        [RequiredModel]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -174,10 +175,7 @@ namespace LexiconUniversity2026.Web.Controllers
 
             var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
+          
 
             return View(student);
         }
