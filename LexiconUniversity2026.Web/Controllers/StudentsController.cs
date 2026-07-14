@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bogus;
+using LexiconUniversity2026.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -80,13 +81,14 @@ namespace LexiconUniversity2026.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ModelStateIsValid]
         public async Task<IActionResult> Create(StudentCreateViewModel viewModel)
         {
             _faker = new Faker("sv");
             Random rnd = new Random(); 
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 Student student = new Student()
                 {
                     Avatar = _faker.Internet.Avatar(),
@@ -107,8 +109,8 @@ namespace LexiconUniversity2026.Web.Controllers
                 _context.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(viewModel);
+            //}
+            //return View(viewModel);
         }
 
         // GET: Students/Edit/5
