@@ -11,6 +11,7 @@ namespace LexiconUniversity2026.Persistence.Data
     {
         public LexiconUniversityContext(DbContextOptions options) : base(options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking; 
         }
 
         public DbSet<Student> Students { get; set; } = default!; 

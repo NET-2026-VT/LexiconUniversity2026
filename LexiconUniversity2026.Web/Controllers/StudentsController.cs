@@ -4,9 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using LexiconUniversity2026.Core.Entities;
-using LexiconUniversity2026.Persistence.Data;
 
 namespace LexiconUniversity2026.Web.Controllers
 {
@@ -22,16 +19,16 @@ namespace LexiconUniversity2026.Web.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            var t = _context.Students.ToList();
-
-            var t2 = _context.Students.Include(s => s.Enrollments).ToList();
-
-            var t3 = _context.Students.Include(s => s.Enrollments).ThenInclude(e => e.Course).ToList();
-
-            var full = _context.Students.Include(s => s.Address).Include(s => s.Enrollments).ThenInclude(e => e.Course).ToList(); 
-
-
-            return View(await _context.Students.ToListAsync());
+            var model = _context.Students.AsNoTracking()
+                .Select(s => new StudentIndexViewModel
+                {
+                    Id = s.Id,
+                    Avatar = s.Avatar,
+                    FullName = s.Name.FullName,
+                    City = s.Address.City
+                });
+           
+            return View(await model.ToListAsync());
         }
 
         // GET: Students/Details/5
