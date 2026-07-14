@@ -22,10 +22,12 @@ namespace LexiconUniversity2026.Web.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            Student student = _context.Students.Include(s => s.Address).FirstOrDefault();
-            student.Name.FirstName = "Edited in index";
-            _context.Students.Update(student);
-            await _context.SaveChangesAsync(); 
+            //Student student = _context.Students.Include(s => s.Address).FirstOrDefault();
+            //student.Name.FirstName = "Edited in index";
+            //_context.Students.Update(student);
+            //await _context.SaveChangesAsync(); 
+
+            var res = _context.Students.Where(s => EF.Property<DateTime>(s, "Edited") >= DateTime.Now.AddDays(-1));
 
 
             var model = _context.Students.AsNoTracking()
