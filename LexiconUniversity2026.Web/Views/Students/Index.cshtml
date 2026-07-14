@@ -16,10 +16,10 @@
                 @Html.DisplayNameFor(model => model.Avatar)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.Name.FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.Name.LastName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -34,10 +34,10 @@
                 <img src="@item.Avatar" alt="Profile picture" width="100" height="100"/>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.Name.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.Name.LastName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)

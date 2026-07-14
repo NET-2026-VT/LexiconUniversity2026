@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace LexiconUniversity2026.Core.Entities
@@ -8,9 +9,8 @@ namespace LexiconUniversity2026.Core.Entities
     {
         public int Id { get; set; }
         public string Avatar { get; set; } = string.Empty;
-
-        public Name Name { get; set; } = new Name(); 
-
+        
+        public Name Name { get; set; } = new Name();
         public string Email { get; set; } = string.Empty;
 
         public Address Address { get; set; } = new Address();
