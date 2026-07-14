@@ -24,7 +24,7 @@ namespace LexiconUniversity2026.Web.Validations
             if(value is string input)
             {
                 var num = input.Trim().Split().Last();
-                return int.TryParse(num, out int res) & res <= _max; 
+                return int.TryParse(num, out int res) && res <= _max; 
             }
             return false; 
         }
