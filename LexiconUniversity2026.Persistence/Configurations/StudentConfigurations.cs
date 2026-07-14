@@ -24,6 +24,8 @@ namespace LexiconUniversity2026.Persistence.Configurations
                 .Property(n => n.LastName)
                 .HasColumnName("LastName");
 
+            modelBuilder.Property<DateTime>("Edited");
+
             modelBuilder
                 .HasMany(s => s.Courses)
                 .WithMany(c => c.Students)
