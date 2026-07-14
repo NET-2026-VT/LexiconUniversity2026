@@ -43,14 +43,25 @@ namespace LexiconUniversity2026.Web.Controllers
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (student == null)
+                 .Where(s => s.Id == id)
+                 .Select(s => new StudentDetailsViewModel
+                 {
+                     Id = s.Id,
+                     Avatar = s.Avatar,
+                     FirstName = s.Name.FirstName,
+                     LastName = s.Name.LastName,
+                     Email = s.Email,
+                     Street = s.Address.Street,
+                     ZipCode = s.Address.ZipCode,
+                     City = s.Address.City,
+                     Attending = s.Enrollments.Count,
+                     Courses = s.Enrollments
+                     .Select(e => e.Course)
+                     .ToList()
+                 }).FirstOrDefaultAsync();
+
+            if(student == null)
             {
                 return NotFound();
             }
