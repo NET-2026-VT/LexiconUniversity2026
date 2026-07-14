@@ -22,8 +22,14 @@ namespace LexiconUniversity2026.Web.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
+            Student student = _context.Students.Include(s => s.Address).FirstOrDefault();
+            student.Name.FirstName = "Edited in index";
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync(); 
+
+
             var model = _context.Students.AsNoTracking()
-                .OrderByDescending(s=>s.Id)
+                .OrderBy(s=>s.Id)
                 .Select(s => new StudentIndexViewModel
                 {
                     Id = s.Id,
